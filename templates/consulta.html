@@ -7,6 +7,10 @@
         <h4 class="mb-2">Para <span class="text-secondary">{{ form.destino.value }}</span></h4>
         <h4 class="mb-2">No dia <span class="text-secondary">{{ form.data_ida.value }}</span></h4>
         <h4 class="mb-2">E voltar dia <span class="text-secondary">{{ form.data_volta.value }}</span></h4>
+        <h4 class="mb-2">Pesquisa feita em <span class="text-secondary">{{ form.data_pesquisa.value }}</span></h4>
+        <h4 class="mb-2">Informações Extras: <span class="text-secondary">{{ form.detalhes.value }}</span></h4>
+        <h4 class="mb-2">Classe selecionada: <span class="text-secondary">{{ form.classe.value }}</span></h4>
+        <h4 class="mb-2">Email: <span class="text-secondary">{{ form.email.value }}</span></h4>
         <a href="{% url 'home' %}" class="btn btn-success mt-2">Voltar</a>
     </section>
     {% endblock content %}

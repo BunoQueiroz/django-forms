@@ -8,3 +8,4 @@
 
 # Utlidades
 * Construção de formulários utilizando *DjangoForms*
+* Renderização dos dados passados por um formulário para uma nova página

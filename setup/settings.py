@@ -28,8 +28,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'passagens',
     'tempus_dominus',
+    'widget_tweaks',
+    'passagens',
 ]
 
 MIDDLEWARE = [

@@ -17,3 +17,10 @@ class PassagensForms(forms.Form):
     )
     classe = forms.ChoiceField(choices=tipos_classe, initial='1')
     email = forms.EmailField(max_length=100, required=True)
+
+    def clean_origem(self):
+        origem = self.cleaned_data.get('origem')
+        if any(char.isdigit() for char in origem):
+            raise forms.ValidationError('Esse campo não aceita números')
+        else:
+            return origem

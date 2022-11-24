@@ -10,6 +10,7 @@ def home(request):
 def consulta(request):
     if request.method == 'POST':
         form = PassagensForms(request.POST)
-        context = {'form': form}
-        return render(request, 'consulta.html', context)
-    return redirect('home')
+        if form.is_valid():
+            context = {'form': form}
+            return render(request, 'consulta.html', context)
+        return render(request, 'index.html', {'form':form})

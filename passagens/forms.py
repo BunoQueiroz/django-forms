@@ -3,22 +3,24 @@ from tempus_dominus.widgets import DatePicker
 from datetime import datetime
 from .choices import tipos_classe
 from .validation import *
+from .models import *
 
-class PassagensForms(forms.Form):
-    origem = forms.CharField(label='Origem', max_length=50, strip=True, required=True)
-    destino = forms.CharField(label='Destino', max_length=50, strip=True, required=True)
-    data_ida = forms.DateField(label='Data de ida', required=True, widget=DatePicker(), initial=datetime.today)
-    data_volta = forms.DateField(label='Data de volta', required=True, widget=DatePicker(), initial=datetime.today)
+class PassagensForms(forms.ModelForm):
     data_pesquisa = forms.DateField(label='Data da pesquisa', required=True, disabled=True, initial=datetime.today)
-    detalhes = forms.CharField(
-        label='Informações extras',
-        widget=forms.Textarea(),
-        required=False,
-        max_length=200
-    )
-    classe = forms.ChoiceField(choices=tipos_classe, initial='1')
-    email = forms.EmailField(max_length=100, required=True)
-
+    class Meta:
+        model = Passagem
+        fields = '__all__'
+        widgets = {
+            'data_ida': DatePicker(),
+            'data_volta': DatePicker(),
+        }
+        labels = {
+            'data_ida': 'Data de ida',
+            'data_volta': 'Data de volta',
+            'data_pesquisa': 'Data da pesquisa',
+            'informacoes': 'Informações',
+        }
+    
     def clean(self):
         origem = self.cleaned_data.get('origem')
         destino = self.cleaned_data.get('destino')
@@ -36,3 +38,8 @@ class PassagensForms(forms.Form):
                 mensagem_erro = lista_erros[erro]
                 self.add_error(erro, mensagem_erro)
         return self.cleaned_data
+
+class PessoaForms(forms.ModelForm):
+    class Meta:
+        model = Pessoa
+        exclude = ['nome']
